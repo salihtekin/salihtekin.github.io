@@ -197,6 +197,24 @@
   .radar .blip{position:absolute; width:9px; height:9px; border-radius:50%; background:var(--laser); box-shadow:0 0 14px var(--laser); animation:pulse 2s infinite}
   .radar .lbl{position:absolute; font-family:var(--mono); font-size:10.5px; color:var(--dim); letter-spacing:.1em}
 
+  .cwrap{position:relative}
+  .cwrap .radar{position:absolute; width:560px; max-width:none; right:-140px; top:50%; transform:translateY(-50%); margin:0; opacity:.45; z-index:0; pointer-events:none}
+  .cform{position:relative; z-index:1; display:flex; flex-direction:column; gap:16px; background:rgba(7,13,18,.88)}
+  .cform .ftop{display:flex; justify-content:space-between; font-family:var(--mono); font-size:12px; letter-spacing:.14em; color:var(--dim); padding-bottom:14px; border-bottom:1px solid var(--line)}
+  .cform label{display:flex; flex-direction:column; gap:8px; font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim)}
+  .cform input, .cform textarea{font-family:var(--body); font-size:16px; letter-spacing:0; text-transform:none; color:var(--text); background:rgba(94,242,255,.04); border:1px solid var(--line); border-radius:0; padding:13px 14px; outline:none; resize:vertical; transition:border-color .2s, box-shadow .2s}
+  .cform input:focus, .cform textarea:focus{border-color:var(--cyan); box-shadow:0 0 0 3px rgba(94,242,255,.12)}
+  .cform .hp{position:absolute; left:-9999px; width:1px; height:1px; opacity:0}
+  .cform button{align-self:flex-start; border:0; cursor:pointer}
+  .cform button[disabled]{opacity:.6; cursor:wait}
+  .contact .fstat{margin:0; font-family:var(--mono); font-size:13px; min-height:1.5em; color:var(--dim)}
+  .contact .fstat.ok{color:var(--ok)}
+  .contact .fstat.err{color:var(--laser)}
+  .contact .fstat a{color:var(--cyan)}
+  .copy{margin-left:12px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; padding:5px 9px; color:var(--cyan); background:rgba(94,242,255,.06); border:1px solid var(--line2); cursor:pointer; vertical-align:middle; word-break:normal}
+  .copy:hover{background:rgba(94,242,255,.15)}
+  @media (max-width:680px){ .cwrap .radar{display:none} .copy{margin:10px 0 0; display:block} }
+
   footer{border-top:1px solid var(--line); position:relative; z-index:1; background:rgba(5,8,11,.9)}
   footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-top:18px; padding-bottom:18px; font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; color:var(--dim)}
   footer .ok{color:var(--ok)}
@@ -463,20 +481,27 @@
       <div class="rv">
         <span class="tag">05 — İletişim</span>
         <h2>Bağlantı <span>kur</span></h2>
-        <p>Yazılım projeleri, iş birlikleri, teknik danışmanlık veya kurum içi eğitim için yazın, en kısa sürede dönüş yapayım.</p>
-        <p class="cmd"><span class="pr">$</span> mail <a href="mailto:softwaresalihtekin@gmail.com">softwaresalihtekin@gmail.com</a></p>
+        <p>Yazılım projeleri, iş birlikleri, teknik danışmanlık veya kurum içi eğitim için formu doldurun ya da doğrudan e-posta gönderin, en kısa sürede dönüş yapayım.</p>
+        <p class="cmd"><span class="pr">$</span> mail <a href="mailto:softwaresalihtekin@gmail.com">softwaresalihtekin@gmail.com</a><button type="button" class="copy" id="copyMail">KOPYALA</button></p>
         <div class="cta">
-          <a class="btn p" href="mailto:softwaresalihtekin@gmail.com">Mesaj gönder →</a>
           <a class="btn g" href="https://github.com/salihtekin">GitHub</a>
         </div>
       </div>
-      <div class="radar rv" aria-hidden="true">
-        <div class="sweep"></div>
-        <i class="blip" style="left:63%; top:30%"></i>
-        <i class="blip" style="left:30%; top:62%; animation-delay:.8s; background:var(--cyan); box-shadow:0 0 14px var(--cyan)"></i>
-        <span class="lbl" style="left:66%; top:25%">HEDEF_01</span>
-        <span class="lbl" style="left:50%; top:3%; transform:translateX(-50%)">000°</span>
-        <span class="lbl" style="right:3%; top:50%; transform:translateY(-50%)">090°</span>
+      <div class="cwrap rv">
+        <div class="radar" aria-hidden="true">
+          <div class="sweep"></div>
+          <i class="blip" style="left:63%; top:30%"></i>
+          <i class="blip" style="left:30%; top:62%; animation-delay:.8s; background:var(--cyan); box-shadow:0 0 14px var(--cyan)"></i>
+        </div>
+        <form class="panel cform" id="cform" novalidate>
+          <div class="ftop"><span>MESAJ_PAKETİ</span><span id="fclock">--:--:--</span></div>
+          <label>Ad Soyad<input name="name" autocomplete="name" required></label>
+          <label>E-posta<input name="email" type="email" autocomplete="email" required></label>
+          <label>Mesaj<textarea name="message" rows="5" required></textarea></label>
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn p" type="submit" id="fsend">Mesaj gönder →</button>
+          <p class="fstat" id="fstat" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </div>
   </section>
@@ -655,6 +680,43 @@
       if (!reduce) requestAnimationFrame(draw);
     }
     draw();
+  })();
+
+  /* contact form */
+  (function(){
+    const MAIL = 'softwaresalihtekin@gmail.com';
+    const form = document.getElementById('cform'), st = document.getElementById('fstat'), btn = document.getElementById('fsend'), clock = document.getElementById('fclock');
+    const tick = () => clock.textContent = new Date().toLocaleTimeString('tr-TR'); tick(); setInterval(tick, 1000);
+    const fallback = '> Gönderilemedi. Lütfen doğrudan <a href="mailto:' + MAIL + '">' + MAIL + '</a> adresine yazın.';
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (form.elements._honey.value) return;
+      const d = Object.fromEntries(new FormData(form));
+      if (!d.name.trim() || !d.message.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)){
+        st.className = 'fstat err'; st.textContent = '> Hata: ad, geçerli bir e-posta ve mesaj gerekli.'; return;
+      }
+      btn.disabled = true; st.className = 'fstat'; st.textContent = '> İletiliyor...';
+      try {
+        const r = await fetch('https://formsubmit.co/ajax/' + MAIL, {
+          method:'POST', headers:{'Content-Type':'application/json', 'Accept':'application/json'},
+          body: JSON.stringify({ name:d.name, email:d.email, message:d.message, _subject:'salihtekin.com · yeni mesaj', _template:'table', _replyto:d.email })
+        });
+        const j = await r.json().catch(() => ({}));
+        if (r.ok && String(j.success) === 'true'){
+          st.className = 'fstat ok'; st.textContent = '> İletildi. Teşekkürler, en kısa sürede dönüş yapacağım.'; form.reset();
+        } else if (/activat/i.test(j.message || '')){
+          st.className = 'fstat err'; st.innerHTML = '> Form henüz etkinleştirilmedi. Şimdilik lütfen <a href="mailto:' + MAIL + '">' + MAIL + '</a> adresine yazın.';
+        } else { throw new Error(j.message || r.status); }
+      } catch (err) {
+        st.className = 'fstat err'; st.innerHTML = fallback;
+      } finally { btn.disabled = false; }
+    });
+    document.getElementById('copyMail').addEventListener('click', async e => {
+      const b = e.currentTarget;
+      try { await navigator.clipboard.writeText(MAIL); b.textContent = 'KOPYALANDI ✓'; }
+      catch (_) { b.textContent = 'SEÇİP KOPYALAYIN'; }
+      setTimeout(() => b.textContent = 'KOPYALA', 2000);
+    });
   })();
 
   /* reveal */
