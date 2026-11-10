@@ -3,331 +3,224 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Salih Tekin — Yazılım Eğitmeni ve Mimarı</title>
-<meta name="description" content="Salih Tekin — Bursa'da yazılım eğitmeni ve yazılım mimarı. Python, SQL, C#/.NET, yapay zekâ ve otonom sistemler.">
-<meta property="og:title" content="Salih Tekin — Yazılım Eğitmeni ve Mimarı">
-<meta property="og:description" content="Python, SQL, C#/.NET, yapay zekâ ve otonom sistemler üzerine eğitim, danışmanlık ve geliştirme.">
+<title>Salih Tekin</title>
+<meta name="description" content="Salih Tekin. Bursa'da yazılım eğitmeni ve teknik danışman. Python, SQL, C#/.NET, yapay zekâ ve otonom sistemler.">
+<meta property="og:title" content="Salih Tekin">
+<meta property="og:description" content="Bursa'da yazılım eğitmeni ve teknik danışman.">
 <meta property="og:url" content="https://salihtekin.com/">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0f6e74">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f6e74'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='26' font-weight='700' fill='%23fff' text-anchor='middle'%3EST%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fbfaf7'/%3E%3Cpath d='M4 26 L28 6' stroke='%23d23c1e' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f6f5f1; --surface:#ffffff; --ink:#12161d; --muted:#5a6370; --line:#e3e1da;
-    --accent:#0f6e74; --accent-soft:#e3f0ef; --accent2:#d9702b;
-    --radius:14px; --max:1080px;
-    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-    --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    --paper:#fbfaf7;
+    --ink:#1c1b19;
+    --soft:#6d6a64;
+    --rule:#dcd8cf;
+    --laser:#d23c1e;
+    --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
   }
   @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#0e1116; --surface:#151a21; --ink:#e9edf2; --muted:#9aa4b2; --line:#252c36;
-      --accent:#3fb5b0; --accent-soft:#16302f; --accent2:#f0934f;
-    }
+    :root{ --paper:#151412; --ink:#e8e4dc; --soft:#9a958c; --rule:#2e2b27; --laser:#f05a37; }
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
-  a{color:inherit}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--serif); font-size:18px; line-height:1.62;
+    font-optical-sizing:auto; -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:780px; margin:0 auto; padding:56px 28px 40px}
 
-  /* Nav */
-  header.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
-  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:-.01em}
-  .brand .mark{width:32px;height:32px;border-radius:9px;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
-  .nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
-  .nav ul a{text-decoration:none;color:var(--muted);font-size:14.5px;font-weight:500}
-  .nav ul a:hover{color:var(--ink)}
-  @media (max-width:760px){.nav ul{display:none}}
+  a{color:inherit; text-decoration:underline; text-decoration-color:var(--laser); text-decoration-thickness:1px; text-underline-offset:3px}
+  a:hover{color:var(--laser)}
 
-  /* Hero */
-  .hero{padding-top:96px;padding-bottom:72px}
-  .eyebrow{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.02em;display:inline-flex;align-items:center;gap:8px}
-  .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent2)}
-  h1{font-size:clamp(44px,8vw,84px);line-height:1.02;letter-spacing:-.035em;margin:18px 0 22px;font-weight:800}
-  .lead{font-size:clamp(18px,2.2vw,21px);color:var(--muted);max-width:720px;margin:0}
-  .lead strong{color:var(--ink);font-weight:600}
-  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);transition:transform .15s ease, background .15s ease}
-  .btn:hover{transform:translateY(-1px)}
-  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-  .btn.ghost{background:var(--surface)}
+  /* üst satır */
+  .top{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;
+       font-family:var(--mono); font-size:12.5px; letter-spacing:.02em; color:var(--soft);
+       padding-bottom:14px; border-bottom:1px solid var(--rule)}
+  .top nav a{text-decoration:none; margin-left:18px}
+  .top nav a:first-child{margin-left:0}
+  .top nav a:hover{color:var(--laser)}
 
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:64px}
-  .stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-  .stat b{display:block;font-size:30px;letter-spacing:-.02em;line-height:1.1}
-  .stat span{color:var(--muted);font-size:14.5px}
-  @media (max-width:760px){.stats{grid-template-columns:1fr}}
+  /* giriş */
+  .intro{padding:72px 0 64px}
+  .intro h1{font-weight:600; font-size:20px; margin:0 0 22px; letter-spacing:-.005em}
+  .intro .big{font-size:27px; line-height:1.38; margin:0 0 26px; letter-spacing:-.01em; max-width:640px}
+  .intro p{max-width:600px; margin:0 0 16px}
+  .intro .beam{display:block; width:96px; height:1px; background:var(--laser); margin:0 0 28px; position:relative}
+  .intro .beam::after{content:""; position:absolute; right:-3px; top:-2px; width:5px; height:5px; border-radius:50%; background:var(--laser)}
 
-  /* Sections */
-  section{padding:72px 0;border-top:1px solid var(--line)}
-  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:34px}
-  .sec-head .num{font-family:var(--mono);font-size:13px;color:var(--accent)}
-  h2{font-size:clamp(28px,4vw,38px);letter-spacing:-.025em;margin:0;line-height:1.15}
-  .grid-2{display:grid;grid-template-columns:1.1fr .9fr;gap:48px}
-  @media (max-width:860px){.grid-2{grid-template-columns:1fr;gap:28px}}
-  p{margin:0 0 16px}
-  .muted{color:var(--muted)}
+  /* bölümler: solda etiket, sağda içerik */
+  section{display:grid; grid-template-columns:150px 1fr; gap:0 30px; padding:34px 0; border-top:1px solid var(--rule)}
+  section > h2{font-family:var(--mono); font-weight:500; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;
+               color:var(--soft); margin:6px 0 0}
+  section > div > p{margin:0 0 14px}
+  section > div > p:last-child{margin-bottom:0}
 
-  .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{font-family:var(--mono);font-size:13px;padding:6px 11px;border-radius:8px;background:var(--accent-soft);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 18%,transparent)}
-  .skill-group{margin-bottom:22px}
-  .skill-group h3{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px;font-weight:600}
+  .rows{list-style:none; margin:0; padding:0}
+  .rows li{display:grid; grid-template-columns:1fr auto; gap:4px 20px; padding:0 0 18px}
+  .rows li:last-child{padding-bottom:0}
+  .rows .what{font-weight:600}
+  .rows .when{font-family:var(--mono); font-size:12.5px; color:var(--soft); white-space:nowrap; padding-top:5px}
+  .rows .note{grid-column:1 / -1; color:var(--soft); font-size:16.5px; line-height:1.55; margin-top:-2px}
 
-  /* Timeline */
-  .timeline{list-style:none;margin:0;padding:0;position:relative}
-  .timeline li{display:grid;grid-template-columns:170px 1fr;gap:24px;padding:22px 0;border-bottom:1px dashed var(--line)}
-  .timeline li:last-child{border-bottom:0}
-  .when{font-family:var(--mono);font-size:13.5px;color:var(--muted);padding-top:3px}
-  .role{font-weight:700;font-size:18px;letter-spacing:-.01em}
-  .org{color:var(--accent);font-weight:600;font-size:15px;margin-bottom:6px}
-  .timeline p{color:var(--muted);margin:0}
-  @media (max-width:640px){.timeline li{grid-template-columns:1fr;gap:4px}}
+  .now p{position:relative}
 
-  /* Cards */
-  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  @media (max-width:760px){.cards{grid-template-columns:1fr}}
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s ease, transform .2s ease}
-  .card:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(-2px)}
-  .card .tag{font-family:var(--mono);font-size:12px;color:var(--accent2);text-transform:uppercase;letter-spacing:.06em}
-  .card h3{margin:0;font-size:20px;letter-spacing:-.015em;line-height:1.3}
-  .card p{color:var(--muted);margin:0;flex:1}
-  .card .chips{margin-top:6px}
-  .card .chip{font-size:12px;padding:4px 9px}
+  /* antet */
+  .titleblock{margin-top:56px; display:flex; justify-content:flex-end}
+  .titleblock table{border-collapse:collapse; font-family:var(--mono); font-size:11.5px; color:var(--soft); min-width:300px}
+  .titleblock td{border:1px solid var(--rule); padding:6px 10px; vertical-align:top}
+  .titleblock td:first-child{width:78px; letter-spacing:.06em}
+  .titleblock td:last-child{color:var(--ink)}
 
-  .courses{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  @media (max-width:860px){.courses{grid-template-columns:1fr}}
-  .course{border-radius:var(--radius);padding:26px;border:1px solid var(--line);background:var(--surface)}
-  .course .dur{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
-  .course h3{margin:6px 0 10px;font-size:20px}
-  .course ul{margin:0;padding-left:18px;color:var(--muted);font-size:15px}
-  .course li{margin:3px 0}
-
-  .edu{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  @media (max-width:760px){.edu{grid-template-columns:1fr}}
-
-  /* Contact */
-  .contact{background:var(--ink);color:var(--bg);border-radius:22px;padding:56px 48px;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
-  .contact h2{color:var(--bg)}
-  .contact p{color:color-mix(in srgb,var(--bg) 70%,transparent);margin:10px 0 0;max-width:520px}
-  .contact .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
-  @media (max-width:640px){.contact{padding:36px 24px}}
-
-  footer{padding:36px 0 48px;color:var(--muted);font-size:14px}
-  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  @media (max-width:640px){
+    body{font-size:17px}
+    .page{padding:32px 18px 32px}
+    .intro{padding:48px 0 44px}
+    .intro .big{font-size:23px}
+    section{grid-template-columns:1fr; gap:12px; padding:28px 0}
+    section > h2{margin:0}
+    .top nav a{margin-left:12px}
+    .titleblock{justify-content:stretch}
+    .titleblock table{width:100%; min-width:0}
+  }
 </style>
 </head>
 <body>
+<div class="page">
 
-<header class="nav">
-  <div class="wrap">
-    <a class="brand" href="#top"><span class="mark">ST</span>Salih Tekin</a>
-    <ul>
-      <li><a href="#hakkimda">Hakkımda</a></li>
-      <li><a href="#deneyim">Deneyim</a></li>
-      <li><a href="#egitimler">Eğitimler</a></li>
-      <li><a href="#projeler">Projeler</a></li>
-      <li><a href="#iletisim">İletişim</a></li>
-    </ul>
-  </div>
-</header>
+  <header class="top">
+    <span>salihtekin.com</span>
+    <nav>
+      <a href="#egitimler">eğitimler</a>
+      <a href="#projeler">projeler</a>
+      <a href="#iletisim">iletişim</a>
+    </nav>
+  </header>
 
-<main id="top">
-  <div class="wrap hero">
-    <span class="eyebrow">Yazılım Eğitmeni · Yazılım Mimarı · Bursa</span>
+  <div class="intro">
     <h1>Salih Tekin</h1>
-    <p class="lead">Otonom sistemlerden yapay zekâya, endüstriyel Ar-Ge yazılımından web uygulamalarına uzanan bir deneyimle <strong>yazılım geliştiriyor, mimari kuruyor ve öğretiyorum.</strong></p>
-    <div class="cta">
-      <a class="btn primary" href="mailto:softwaresalihtekin@gmail.com">İletişime geç →</a>
-      <a class="btn ghost" href="#egitimler">Eğitimleri incele</a>
-    </div>
-
-    <div class="stats">
-      <div class="stat"><b>5+ yıl</b><span>profesyonel yazılım geliştirme deneyimi</span></div>
-      <div class="stat"><b>2019'dan beri</b><span>robotik ve otonom İHA sistemleri</span></div>
-      <div class="stat"><b>%87,85</b><span>lazer kesimde YZ ile kalite tahmini doğruluğu</span></div>
-    </div>
+    <p class="big">Bursa'da yaşıyorum. Yazılım öğretiyorum, şirketlere teknik danışmanlık yapıyorum.</p>
+    <span class="beam" aria-hidden="true"></span>
+    <p>Elektrik-elektronik mühendisiyim. 2019'dan beri drone otonomisi ve endüstriyel Ar-Ge yazılımı üzerinde çalışıyorum. Bu sırada C#, .NET, Qt, Python ve SQL ile gerçek sahada çalışan sistemler yazdım.</p>
+    <p>Eğitimlerimi <a href="#egitimler">Software PERSONA</a> adıyla veriyorum. Programlar, öğrencilerin kendi elleriyle kurduğu bir bitirme projesiyle kapanıyor.</p>
   </div>
 
-  <section id="hakkimda">
-    <div class="wrap">
-      <div class="sec-head"><span class="num">01</span><h2>Hakkımda</h2></div>
-      <div class="grid-2">
-        <div>
-          <p>Elektrik-elektronik mühendisiyim. Kariyerim boyunca donanımla yazılımın kesiştiği noktada çalıştım: otonom drone sistemleri, endüstriyel Ar-Ge projeleri, saha entegrasyonu ve son yıllarda yapay zekâ tabanlı karar destek sistemleri.</p>
-          <p>Bugün <strong>Software PERSONA</strong> markasıyla yazılım eğitimleri veriyor, kurumlara teknik danışmanlık sağlıyorum. Eğitimlerimde teoriyi gerçek projelerle birleştiriyorum: katılımcılar kursu, çalışan bir uygulamayla bitiriyor.</p>
-          <p class="muted">Bursa Uludağ Üniversitesi'nde Optik ve Fotonik Mühendisliği yüksek lisansımı, lazer kesim makinelerinde yapay zekâ ile kalite tahmini üzerine teziyle tamamlıyorum.</p>
-        </div>
-        <div>
-          <div class="skill-group">
-            <h3>Diller &amp; Çatılar</h3>
-            <div class="chips"><span class="chip">Python</span><span class="chip">C#</span><span class="chip">.NET / ASP.NET</span><span class="chip">JavaScript</span><span class="chip">Flask</span><span class="chip">Qt</span></div>
-          </div>
-          <div class="skill-group">
-            <h3>Veri &amp; Yapay Zekâ</h3>
-            <div class="chips"><span class="chip">SQL</span><span class="chip">SQL Server</span><span class="chip">SQLite</span><span class="chip">Derin Öğrenme</span><span class="chip">Görüntü İşleme</span><span class="chip">LLM Entegrasyonu</span></div>
-          </div>
-          <div class="skill-group">
-            <h3>Sistemler</h3>
-            <div class="chips"><span class="chip">Gömülü Yazılım</span><span class="chip">Sistem Mühendisliği</span><span class="chip">Otonom Sistemler</span><span class="chip">Ağ Protokolleri</span><span class="chip">Test &amp; Saha Entegrasyonu</span><span class="chip">Git</span></div>
-          </div>
-        </div>
-      </div>
+  <section class="now">
+    <h2>Şu sıralar</h2>
+    <div>
+      <p>TNC Group'ta yazılım eğitmeni ve teknik danışman olarak çalışıyorum. Beykoz Üniversitesi'nde de misafir eğitmen olarak ders veriyorum.</p>
+      <p>Bursa Uludağ Üniversitesi'nde Optik ve Fotonik Mühendisliği yüksek lisansımın tezini bitiriyorum. Konusu, lazer kesim makinelerinde kesim kalitesini görüntü ve süreç parametrelerinden tahmin etmek.</p>
     </div>
   </section>
 
-  <section id="deneyim">
-    <div class="wrap">
-      <div class="sec-head"><span class="num">02</span><h2>Deneyim</h2></div>
-      <ul class="timeline">
+  <section id="egitimler">
+    <h2>Eğitimler</h2>
+    <div>
+      <ul class="rows">
         <li>
-          <div class="when">2025 — Günümüz</div>
-          <div>
-            <div class="role">Yazılım Eğitmeni &amp; Teknik Danışman</div>
-            <div class="org">TNC Group Şirketleri · Belgrad</div>
-            <p>Kurumsal yazılım eğitimleri ve teknik danışmanlık.</p>
-          </div>
+          <span class="what">Python Programlama</span><span class="when">10 gün</span>
+          <span class="note">Temellerden başlıyor; koleksiyonlar, fonksiyonlar ve hata yönetiminden sonra Flask ile web API yazıp bir LLM servisine bağlanarak bitiyor.</span>
         </li>
         <li>
-          <div class="when">Misafir Eğitmen</div>
-          <div>
-            <div class="role">Yazılım Eğitmeni</div>
-            <div class="org">Beykoz Üniversitesi</div>
-            <p>Üniversite öğrencilerine uygulamalı yazılım eğitimleri.</p>
-          </div>
+          <span class="what">SQL ile Veritabanı</span><span class="when">5 gün</span>
+          <span class="note">Basit sorgulardan JOIN ve gruplamaya. Bütün alıştırmalar OkulDB ve Northwind üzerinde.</span>
         </li>
         <li>
-          <div class="when">2022 — 2025</div>
-          <div>
-            <div class="role">Ar-Ge Yazılım Mühendisi</div>
-            <div class="org">Ermaksan Optoelektronik Ar-Ge Merkezi · Bursa</div>
-            <p>Ar-Ge projelerinde yazılım geliştirme, test ve saha entegrasyonu.</p>
-          </div>
+          <span class="what">Bitirme projesi: SmartLead AI</span><span class="when">proje</span>
+          <span class="note">Öğrenciler kursun sonunda canlı bir web sitesine bağlı, LLM destekli bir müşteri adayı toplama sistemi kuruyor.</span>
+        </li>
+      </ul>
+      <p style="margin-top:22px">Kurum içi eğitim için içerik ve süre birlikte belirlenebilir. <a href="#iletisim">Yazmanız yeterli.</a></p>
+    </div>
+  </section>
+
+  <section id="projeler">
+    <h2>Projeler</h2>
+    <div>
+      <ul class="rows">
+        <li>
+          <span class="what">Lazer kesimde kalite tahmini</span><span class="when">YL tezi</span>
+          <span class="note">Kesilen parçanın kenar görüntüsü ile kesim parametrelerini birlikte kullanan çift akışlı bir EfficientNet-B0 modeli. 469 görüntülük bağımsız test setinde %87,85 doğruluk. Sonuçlar Flask tabanlı bir karar destek arayüzünde gösteriliyor.</span>
         </li>
         <li>
-          <div class="when">2019 — 2026</div>
-          <div>
-            <div class="role">Kurucu Ortak · Otonomi &amp; Kontrol Lideri</div>
-            <div class="org">ROVENSE Robotik Teknoloji A.Ş. · Bursa</div>
-            <p>Otonom İHA sistemleri için otonomi ve kontrol yazılımlarının geliştirilmesi.</p>
-          </div>
+          <span class="what">Şerit testerede kalite tahmini</span><span class="when">sürüyor</span>
+          <span class="note">Aynı yaklaşımın testere kesimine uyarlanması: kesimin iyi mi kötü mü çıkacağını önceden söylemek ve parametreleri buna göre ayarlamak.</span>
+        </li>
+        <li>
+          <span class="what">SmartLead AI</span><span class="when">Flask · LLaMA 3</span>
+          <span class="note">Web sitesine gelen ziyaretçilerden B2B müşteri adayı toplayıp yapay zekâ ile değerlendiren modüler sistem. Wix Velo ile gerçek bir siteye bağlı.</span>
+        </li>
+        <li>
+          <span class="what">Tadilat pazaryeri</span><span class="when">Flask</span>
+          <span class="note">Ev sahipleriyle ustaları buluşturan, ödemeyi iş bitene kadar emanette tutan iki taraflı bir web uygulaması.</span>
         </li>
       </ul>
     </div>
   </section>
 
-  <section id="egitimler">
-    <div class="wrap">
-      <div class="sec-head"><span class="num">03</span><h2>Eğitimler</h2></div>
-      <p class="muted" style="max-width:680px;margin-bottom:28px">Software PERSONA eğitimleri Türkçe, proje odaklı ve sıfırdan ileri seviyeye kurgulanmıştır. Kurumsal ve bireysel gruplar için uyarlanabilir.</p>
-      <div class="courses">
-        <div class="course">
-          <span class="dur">10 gün</span>
-          <h3>Python Programlama</h3>
-          <ul>
-            <li>Temeller, koleksiyonlar, fonksiyonlar</li>
-            <li>Hata yönetimi</li>
-            <li>Flask ile web API</li>
-            <li>LLM API entegrasyonu</li>
-          </ul>
-        </div>
-        <div class="course">
-          <span class="dur">5 gün</span>
-          <h3>SQL ile Veritabanı</h3>
-          <ul>
-            <li>Sorgu temelleri ve filtreleme</li>
-            <li>JOIN'ler ve gruplama</li>
-            <li>Gerçekçi örnek veritabanları</li>
-            <li>Uygulamalı alıştırmalar</li>
-          </ul>
-        </div>
-        <div class="course">
-          <span class="dur">Bitirme projesi</span>
-          <h3>SmartLead AI</h3>
-          <ul>
-            <li>Uçtan uca gerçek bir ürün</li>
-            <li>Python + Flask + SQLite</li>
-            <li>LLM ile akıllı analiz</li>
-            <li>Canlı web sitesine entegrasyon</li>
-          </ul>
-        </div>
-      </div>
+  <section>
+    <h2>Deneyim</h2>
+    <div>
+      <ul class="rows">
+        <li>
+          <span class="what">TNC Group Şirketleri, Belgrad</span><span class="when">2025 –</span>
+          <span class="note">Yazılım eğitmeni ve teknik danışman</span>
+        </li>
+        <li>
+          <span class="what">Ermaksan Optoelektronik Ar-Ge Merkezi</span><span class="when">2022 – 2025</span>
+          <span class="note">Ar-Ge yazılım mühendisi. Yazılım geliştirme, test ve saha entegrasyonu.</span>
+        </li>
+        <li>
+          <span class="what">ROVENSE Robotik Teknoloji A.Ş.</span><span class="when">2019 – 2026</span>
+          <span class="note">Kurucu ortak. Otonom İHA'lar için otonomi ve kontrol yazılımı.</span>
+        </li>
+        <li>
+          <span class="what">Beykoz Üniversitesi</span><span class="when">misafir</span>
+          <span class="note">Misafir yazılım eğitmeni</span>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <section id="projeler">
-    <div class="wrap">
-      <div class="sec-head"><span class="num">04</span><h2>Seçili Projeler</h2></div>
-      <div class="cards">
-        <article class="card">
-          <span class="tag">Yüksek Lisans Tezi</span>
-          <h3>Lazer Kesim Makinelerinde YZ ile Kalite Tahmini ve Karar Destek</h3>
-          <p>Görüntü ve süreç parametrelerini birlikte kullanan çift akışlı derin öğrenme modeli; bağımsız test setinde %87,85 doğruluk. Flask tabanlı karar destek arayüzü.</p>
-          <div class="chips"><span class="chip">EfficientNet-B0</span><span class="chip">Python</span><span class="chip">Flask</span></div>
-        </article>
-        <article class="card">
-          <span class="tag">Ürün · Eğitim</span>
-          <h3>SmartLead AI</h3>
-          <p>Modüler, yapay zekâ destekli B2B potansiyel müşteri yakalama sistemi. Öğrencilerin bitirme projesi olarak geliştirdiği, gerçek web sitesine bağlı çalışan bir ürün.</p>
-          <div class="chips"><span class="chip">Flask</span><span class="chip">LLaMA 3</span><span class="chip">Groq</span><span class="chip">Wix Velo</span></div>
-        </article>
-        <article class="card">
-          <span class="tag">Web Platformu</span>
-          <h3>Tadilat Pazaryeri</h3>
-          <p>Ev sahipleriyle ustaları buluşturan iki taraflı tadilat pazaryeri; emanet (escrow) ödeme akışıyla uçtan uca web uygulaması.</p>
-          <div class="chips"><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">Full-stack</span></div>
-        </article>
-        <article class="card">
-          <span class="tag">Devam ediyor</span>
-          <h3>Şerit Testere Kesiminde Kalite Tahmini</h3>
-          <p>Lazer kesim çalışmasındaki yaklaşımın testere kesimine uyarlanması: kesim kalitesini (iyi/kötü) öngören ve süreç parametrelerini optimize eden YZ modeli.</p>
-          <div class="chips"><span class="chip">Makine Öğrenmesi</span><span class="chip">Optimizasyon</span></div>
-        </article>
-      </div>
+  <section>
+    <h2>Öğrenim</h2>
+    <div>
+      <ul class="rows">
+        <li>
+          <span class="what">Optik ve Fotonik Mühendisliği, YL</span><span class="when">tez aşaması</span>
+          <span class="note">Bursa Uludağ Üniversitesi, Fen Bilimleri Enstitüsü</span>
+        </li>
+        <li>
+          <span class="what">Elektrik-Elektronik Mühendisliği</span><span class="when">2020</span>
+          <span class="note">Bursa Uludağ Üniversitesi</span>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <section id="egitim">
-    <div class="wrap">
-      <div class="sec-head"><span class="num">05</span><h2>Akademik</h2></div>
-      <div class="edu">
-        <div class="course">
-          <span class="dur">Yüksek Lisans · Tez aşamasında</span>
-          <h3>Optik ve Fotonik Mühendisliği</h3>
-          <p class="muted" style="margin:0">Bursa Uludağ Üniversitesi, Fen Bilimleri Enstitüsü</p>
-        </div>
-        <div class="course">
-          <span class="dur">Lisans · 2020</span>
-          <h3>Elektrik-Elektronik Mühendisliği</h3>
-          <p class="muted" style="margin:0">Bursa Uludağ Üniversitesi</p>
-        </div>
-      </div>
+  <section id="iletisim">
+    <h2>İletişim</h2>
+    <div>
+      <p>En hızlı yol e-posta: <a href="mailto:softwaresalihtekin@gmail.com">softwaresalihtekin@gmail.com</a></p>
+      <p>Kodlarımın bir kısmı <a href="https://github.com/salihtekin">GitHub</a>'da.</p>
     </div>
   </section>
 
-  <section id="iletisim" style="border-top:0">
-    <div class="wrap">
-      <div class="contact">
-        <div>
-          <h2>Birlikte çalışalım</h2>
-          <p>Kurumsal eğitim, teknik danışmanlık veya yazılım projeleri için yazın; en kısa sürede dönüş yaparım.</p>
-        </div>
-        <a class="btn" href="mailto:softwaresalihtekin@gmail.com">softwaresalihtekin@gmail.com</a>
-      </div>
-    </div>
-  </section>
-</main>
+  <footer class="titleblock">
+    <table>
+      <tr><td>ÇİZEN</td><td>S. Tekin</td></tr>
+      <tr><td>YER</td><td>Bursa, Türkiye</td></tr>
+      <tr><td>ÖLÇEK</td><td>1:1</td></tr>
+      <tr><td>PAFTA</td><td>salihtekin.com · <span id="y">2026</span></td></tr>
+    </table>
+  </footer>
 
-<footer>
-  <div class="wrap">
-    <span>© <span id="y">2026</span> Salih Tekin · Software PERSONA</span>
-    <span>Bursa, Türkiye</span>
-  </div>
-</footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</div>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
