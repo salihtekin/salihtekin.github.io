@@ -185,6 +185,8 @@
     .about .grid{grid-template-columns:1fr; gap:56px}
     .collage{height:440px}
     .cards{grid-template-columns:1fr 1fr}
+    .card:last-child{grid-column:1 / -1; display:grid; grid-template-columns:1fr 1fr}
+    .card:last-child .ph{aspect-ratio:auto; min-height:100%}
     .proj, .duo{grid-template-columns:1fr}
     .proj.rev .ph{order:0}
     .proj .ph{height:320px}
@@ -203,6 +205,8 @@
     .facts b{font-size:34px}
     .collage{height:340px}
     .cards{grid-template-columns:1fr}
+    .card:last-child{display:flex}
+    .card:last-child .ph{aspect-ratio:4/3}
     .proj .txt, .tile{padding:32px 24px}
     .row{grid-template-columns:1fr; gap:6px; padding:24px 0}
     .row .yr{font-size:34px}
